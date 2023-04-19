@@ -5,16 +5,19 @@ import { MovieView } from "../movie-view/movie-view";
 export const MainView = () => {
   const [movies, setMovies] = useState([]);
 
+  //This loads data from API
   useEffect(() => {
-    fetch(" link from api ")
+    fetch("https://movieflix2023.herokuapp.com/") //check the link (may be wrong)
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.docs.map((doc) => {
+        const moviesFromApi = data.map((movie) => {
           return {
-            id: doc.key,
-            title: doc.title,
-            image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
-            director: doc.director_name?.[0]
+            id: movie.key,
+            title: movie.title,
+            image: movie.ImagePath,
+            description: movie.Description,
+            genre: movie.Genre,
+            director: movie.Director
           };
         });
 
