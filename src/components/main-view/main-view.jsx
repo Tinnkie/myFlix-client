@@ -7,7 +7,7 @@ export const MainView = () => {
 
   //This loads data from API
   useEffect(() => {
-    fetch("https://movieflix2023.herokuapp.com/") //check the link (may be wrong)
+    fetch("https://movieflix2023.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
