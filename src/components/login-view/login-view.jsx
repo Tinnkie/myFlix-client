@@ -11,7 +11,7 @@ export const LoginView = ({ onLoggedIn }) => {
         const data = {
           access: username,
           secret: password
-        }};
+        };
     
         fetch("https://movieflix2023.herokuapp.com/login.json", {
           method: "POST",
@@ -23,6 +23,7 @@ export const LoginView = ({ onLoggedIn }) => {
               alert("Login failed");
             }
           });
+        };
 
     return (
       <form onSubmit={handleSubmit}>
@@ -31,6 +32,7 @@ export const LoginView = ({ onLoggedIn }) => {
           <input type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
         </label>
         <label>
@@ -38,6 +40,7 @@ export const LoginView = ({ onLoggedIn }) => {
           <input type="password" 
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
           />
         </label>
         <button type="submit">Submit</button>
