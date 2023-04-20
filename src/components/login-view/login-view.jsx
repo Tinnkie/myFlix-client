@@ -11,7 +11,7 @@ export const LoginView = ({ onLoggedIn }) => {
         const data = {
           access: username,
           secret: password
-        };
+        }};
     
         fetch("https://movieflix2023.herokuapp.com/login.json", {
           method: "POST",
