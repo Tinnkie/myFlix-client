@@ -12,19 +12,6 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  if (!user) {
-    return (
-      <div>
-      <LoginView
-        onLoggedIn={(user, token) => {
-          setUser(user);
-          setToken(token);
-        }} />
-      <SignupView />
-      </div>
-    );
-  }
-
   //This loads data from API
   useEffect(() => {
     if (!token) {
@@ -38,7 +25,7 @@ export const MainView = () => {
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
           return {
-            id: movie.key,
+            id: movie.id,
             title: movie.Title,
             image: movie.ImagePath,
             description: movie.Description,
@@ -53,7 +40,17 @@ export const MainView = () => {
 
   
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)}/>;
+    return (
+      <div>
+        <LoginView
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }}
+        />
+        <SignupView />
+      </div>
+    );
   }
   
   if (selectedMovie) {
@@ -70,7 +67,7 @@ export const MainView = () => {
     <div>
       {movies.map((movie) => (
         <MovieCard
-          key={movie.key}
+          id={movie.id}
           movie={movie}
           onMovieClick={(newSelectedMovie) => {
             setSelectedMovie(newSelectedMovie);
