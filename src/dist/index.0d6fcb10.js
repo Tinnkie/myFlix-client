@@ -27155,10 +27155,13 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
+var _loginView = require("../login-view/login-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
     const [movies, setMovies] = (0, _react.useState)([]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    const [user, setUser] = (0, _react.useState)(null);
     //This loads data from API
     (0, _react.useEffect)(()=>{
         fetch("https://movieflix2023.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
@@ -27175,20 +27178,24 @@ const MainView = ()=>{
             setMovies(moviesFromApi);
         });
     }, []);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {}, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 34,
+        columnNumber: 12
+    }, undefined);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 32,
+        lineNumber: 39,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 44,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27199,16 +27206,16 @@ const MainView = ()=>{
                 }
             }, movie.key, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 43,
+                lineNumber: 50,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 41,
+        lineNumber: 48,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
+_s(MainView, "AA2Lbd5vppiQn5Rpxq/geFPiCys=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27218,7 +27225,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"9nXbu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"chsRC"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"9nXbu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"chsRC","../login-view/login-view":"9YtA0"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28433,6 +28440,8 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"9nXbu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"chsRC"}]},["9ybPU","6vptI","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"9nXbu","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"chsRC"}],"9YtA0":[function(require,module,exports) {
+
+},{}]},["9ybPU","6vptI","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.0d6fcb10.js.map
