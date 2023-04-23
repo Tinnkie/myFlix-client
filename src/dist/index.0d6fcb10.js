@@ -27193,7 +27193,7 @@ const MainView = ()=>{
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>{
                 return {
-                    id: movie.id,
+                    key: movie.id,
                     title: movie.Title,
                     image: movie.ImagePath,
                     description: movie.Description,
