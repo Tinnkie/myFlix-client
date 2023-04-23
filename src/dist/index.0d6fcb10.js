@@ -27233,6 +27233,7 @@ const MainView = ()=>{
                     lineNumber: 44,
                     columnNumber: 13
                 }, undefined) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    className: "mb-5",
                     md: 8,
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                         movie: selectedMovie,
