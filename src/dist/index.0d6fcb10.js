@@ -27209,7 +27209,8 @@ const MainView = ()=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                 className: "justify-content-md-center",
-                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 5,
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
                             onLoggedIn: (user, token)=>{
@@ -27228,7 +27229,11 @@ const MainView = ()=>{
                             columnNumber: 13
                         }, undefined)
                     ]
-                }, void 0, true) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                }, void 0, true, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 43,
+                    columnNumber: 13
+                }, undefined) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                     md: 8,
                     style: {
                         border: "1px solid black"
@@ -27255,12 +27260,19 @@ const MainView = ()=>{
                     lineNumber: 62,
                     columnNumber: 11
                 }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                            id: movie.id,
-                            movie: movie,
-                            onMovieClick: (newSelectedMovie)=>{
-                                setSelectedMovie(newSelectedMovie);
-                            }
+                    children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                            md: 3,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                id: movie.id,
+                                movie: movie,
+                                onMovieClick: (newSelectedMovie)=>{
+                                    setSelectedMovie(newSelectedMovie);
+                                }
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 67,
+                                columnNumber: 15
+                            }, undefined)
                         }, movie.id, false, {
                             fileName: "src/components/main-view/main-view.jsx",
                             lineNumber: 66,
@@ -27281,7 +27293,7 @@ const MainView = ()=>{
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 79,
+                lineNumber: 80,
                 columnNumber: 9
             }, undefined) : null
         ]

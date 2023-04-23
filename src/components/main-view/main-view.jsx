@@ -40,7 +40,7 @@ export const MainView = () => {
     <>
       <Row className="justify-content-md-center">
         {!user ? (
-          <>
+            <Col md={5}>
             <LoginView
               onLoggedIn={(user, token) => {
                 setUser(user);
@@ -49,7 +49,7 @@ export const MainView = () => {
             />
             or
             <SignupView />
-          </>
+            </Col>
         ) : selectedMovie ? (
           <Col md={8} style={{ border: "1px solid black" }}>
           <MovieView
@@ -63,14 +63,15 @@ export const MainView = () => {
         ) : (
           <>
             {movies.map((movie) => (
+              <Col key={movie.id} md={3}>
               <MovieCard
-                key={movie.id}
                 id={movie.id}
                 movie={movie}
                 onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
                 }}
               />
+              </Col>
             ))}
           </>
         )}
