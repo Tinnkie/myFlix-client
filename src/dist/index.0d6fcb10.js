@@ -27279,6 +27279,8 @@ const MainView = ()=>{
                 columnNumber: 7
             }, undefined),
             user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                className: "mb-4",
+                md: 2,
                 variant: "primary",
                 onClick: ()=>{
                     setUser(null);

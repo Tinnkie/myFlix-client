@@ -77,7 +77,7 @@ export const MainView = () => {
         )}
       </Row>
       {user ? (
-        <Button variant="primary"
+        <Button className="mb-4" md={2} variant="primary"
           onClick={() => {
             setUser(null);
             setToken(null);
