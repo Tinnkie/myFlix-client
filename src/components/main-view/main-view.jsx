@@ -3,16 +3,16 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from 'react-bootstrap/Col';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [user, setUser] = useState(storedUser ? storedUser : null); // State
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
 
@@ -96,9 +96,35 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <Col md={8}>
-                      <MovieView movies={movies} />
+                      <MovieView movies={movies} user={user} token={token} updateUser={(user) => {
+                        setUser(user);
+                        localStorage.setItem('user', JSON.stringify(user));
+                      }}/>
                     </Col>
                   )}
+                </>
+              }
+            />
+            <Route
+              path="/users/:username"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : 
+                    <Col md={8}>
+                      <ProfileView  user={user} token={token} movies={movies} onLoggedOut={() => {
+                        setUser(null);
+                        setToken(null);
+                        localStorage.clear();
+                      }}
+
+                      updateUser={(user) => {
+                        setUser(user);
+                        localStorage.setItem('user', JSON.stringify(user));
+                      }}/> {/* here the user token movies etc are PROPS */}
+                    </Col>
+                  }
                 </>
               }
             />
