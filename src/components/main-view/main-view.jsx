@@ -125,17 +125,6 @@ export const MainView = () => {
           </Routes>
         </Row>
       </BrowserRouter>
-      {user ? (
-        <Button className="mb-4" md={2} variant="primary"
-          onClick={() => {
-            setUser(null);
-            setToken(null);
-            localStorage.clear();
-          }}
-        >
-          Logout
-        </Button>
-      ) : null}
     </>
   );
 };
