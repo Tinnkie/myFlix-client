@@ -1,27 +1,28 @@
 import { useState } from "react";
-import { Card, Col, Form, Button } from "react-bootstrap";
+import { Card, Col, Row, Form, Button } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
+import moment from "moment";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
 
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState(user.Username);
     const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+    const [email, setEmail] = useState(user.Email);
+    const [birthdate, setBirthdate] = useState(user.Birthday);
 
-    let favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie.id));
+    let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
     
     const handleSubmit = event => {
         event.preventDefault();
 
         const data = {
-            username,
-            password,
-            email,
-            birthdate
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthdate,
         }
 
-        fetch(`https://movieflix2023.herokuapp.com/users/${user.username}`, {
+        fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -68,20 +69,16 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
 
     return (
         <>
+        <Row className="justify-content-md-center">
             <Col md={6}>           
                 <Card className="mt-2 mb-3">
                     <Card.Body>
                         <Card.Title >Your info</Card.Title>
-                        <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Birthdate: {user.birthdate.slice(0, 10)}</p>
+                        <p>Username: {user.Username}</p>
+                        <p>Email: {user.Email}</p>
+                        <p>Birthdate: {user.Birthday.slice(0, 10)}</p>
                     </Card.Body>
                 </Card>
-                <Button variant="danger" onClick={() => {
-                    if (confirm("Are you sure?")) {
-                        deleteAccount();
-                    }
-                }}>Delete user account</Button>
             </Col>
             <Col md={6}>
                 <Card className="mt-2 mb-3">
@@ -124,7 +121,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                                 <Form.Label>Birthdate:</Form.Label>
                                 <Form.Control
                                     type="date"
-                                    value={birthdate}
+                                    value={moment(birthdate).format("YYYY-MM-DD")}
                                     onChange={e => setBirthdate(e.target.value)}
                                     required
                                     className="bg-light"
@@ -135,14 +132,21 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                     </Card.Body>
                 </Card>
             </Col>
-            <Col md={12}>
-                <p className="mt-3 mb-3 text-light">Your favorite movies:</p>
-            </Col>
+            </Row>
+            <Row md={12}>
+                <p className="mt-3 mb-3">Your favorite movies:</p>
+            
             {favoriteMovies.map(movie => (
                 <Col className="mb-4" key={movie.id} md={3}>
                     <MovieCard movie={movie} />
                 </Col>
             ))}
+            </Row>
+            <Button variant="danger" onClick={() => {
+                    if (confirm("Are you sure?")) {
+                        deleteAccount();
+                    }
+                }}>Delete user account</Button>
         </>
     );
 }
