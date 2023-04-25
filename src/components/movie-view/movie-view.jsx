@@ -13,7 +13,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
   }
 
   // Add movie to favorites
-  const [isFavorite, setIsFavorite] = useState(user && user.favoriteMovies && user.favoriteMovies.includes(movie.Id));
+  const [isFavorite, setIsFavorite] = useState(user &&  user.FavoriteMovies.includes(movie.Id));
 
   useEffect(() => {
     setIsFavorite(user?.favoriteMovies?.includes(movie.Id));
@@ -21,7 +21,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
     }, [MovieId])
 
   const addFavorite = () => {
-      fetch(`https://movieflix2023.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+      fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}/movies/${MovieId}`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` }
       })
@@ -46,7 +46,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
   }
 
   const removeFavorite = () => {
-      fetch(`https://movieflix2023.herokuapp.com/users/${user.username}/movies/${MovieId}`, {
+      fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}/movies/${MovieId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` }
       })
