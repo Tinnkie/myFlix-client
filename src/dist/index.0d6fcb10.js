@@ -46184,9 +46184,9 @@ const MovieView = ({ movies , user , updateUser , token  })=>{
         columnNumber: 12
     }, undefined);
     // Add movie to favorites
-    const [isFavorite, setIsFavorite] = (0, _react.useState)(user && user.favoriteMovies.includes(movie.Id));
+    const [isFavorite, setIsFavorite] = (0, _react.useState)(user && user.favoriteMovies && user.favoriteMovies.includes(movie.Id));
     (0, _react.useEffect)(()=>{
-        setIsFavorite(user.favoriteMovies.includes(movie.Id));
+        setIsFavorite(user?.favoriteMovies?.includes(movie.Id));
         window.scrollTo(0, 0);
     }, [
         MovieId
@@ -46483,7 +46483,7 @@ const MovieView = ({ movies , user , updateUser , token  })=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MovieView, "cEx3OYG9b4x9fbioa7YTzdqQp8M=", false, function() {
+_s(MovieView, "/jTFl2YMB4zjGWNyuRkm/RQTj4E=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];

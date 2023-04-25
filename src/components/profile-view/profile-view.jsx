@@ -49,7 +49,6 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     }
 
     const deleteAccount = () => {
-        console.log("doin")
         fetch(`https://movieflix2023.herokuapp.com/users/${user.username}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
