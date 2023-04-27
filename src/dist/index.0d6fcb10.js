@@ -28198,7 +28198,7 @@ var _profileView = require("../profile-view/profile-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = JSON.parse(localStorage.getItem("User"));
     const storedToken = localStorage.getItem("token");
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null); // State
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
@@ -46223,10 +46223,11 @@ const MovieView = ({ movies , user , updateUser , token  })=>{
     // Add movie to favorites
     const [isFavorite, setIsFavorite] = (0, _react.useState)(user && user.FavoriteMovies.includes(movie.Id));
     (0, _react.useEffect)(()=>{
-        setIsFavorite(user?.favoriteMovies?.includes(movie.Id));
+        setIsFavorite(user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id));
         window.scrollTo(0, 0);
     }, [
-        MovieId
+        user,
+        movie.id
     ]);
     const addFavorite = ()=>{
         fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}/movies/${MovieId}`, {
@@ -46244,7 +46245,10 @@ const MovieView = ({ movies , user , updateUser , token  })=>{
             if (user) {
                 alert("Successfully added to favorites");
                 setIsFavorite(true);
-                updateUser(user);
+                updateUser((prevUser)=>({
+                        ...prevUser,
+                        FavoriteMovies: user.FavoriteMovies
+                    }));
             }
         }).catch((e)=>{
             alert(e);
@@ -46266,7 +46270,10 @@ const MovieView = ({ movies , user , updateUser , token  })=>{
             if (user) {
                 alert("Successfully deleted from favorites");
                 setIsFavorite(false);
-                updateUser(user);
+                updateUser((prevUser)=>({
+                        ...prevUser,
+                        FavoriteMovies: user.FavoriteMovies
+                    }));
             }
         }).catch((e)=>{
             alert(e);

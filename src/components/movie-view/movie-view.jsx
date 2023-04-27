@@ -16,9 +16,9 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
   const [isFavorite, setIsFavorite] = useState(user &&  user.FavoriteMovies.includes(movie.Id));
 
   useEffect(() => {
-    setIsFavorite(user?.favoriteMovies?.includes(movie.Id));
+    setIsFavorite(user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id));
     window.scrollTo(0, 0);
-    }, [MovieId])
+  }, [user, movie.id]);
 
   const addFavorite = () => {
       fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}/movies/${MovieId}`, {
@@ -37,7 +37,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully added to favorites");
               setIsFavorite(true);
-              updateUser(user);
+              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
           }
       })
       .catch(e => {
@@ -62,7 +62,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully deleted from favorites");
               setIsFavorite(false);
-              updateUser(user);
+              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
           }
       })
       .catch(e => {
