@@ -40,7 +40,7 @@ export const MainView = () => {
         console.error("Error fetching movie data: ", error);
       });
   }, [token]);
-  
+ 
   return (
     <>
       <BrowserRouter>
