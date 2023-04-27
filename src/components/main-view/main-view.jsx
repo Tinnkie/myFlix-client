@@ -15,6 +15,11 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null); // State
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   //This loads data from API
   useEffect(() => {
