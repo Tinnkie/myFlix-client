@@ -10,11 +10,16 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedUser = JSON.parse(localStorage.getItem("User"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null); // State
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   //This loads data from API
   useEffect(() => {
@@ -40,7 +45,7 @@ export const MainView = () => {
         console.error("Error fetching movie data: ", error);
       });
   }, [token]);
-  
+ 
   return (
     <>
       <BrowserRouter>

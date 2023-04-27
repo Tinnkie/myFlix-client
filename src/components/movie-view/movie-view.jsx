@@ -17,8 +17,9 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
 
   useEffect(() => {
     setIsFavorite(user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id));
+    setIsFavorite(user && user.FavoriteMovies && user.FavoriteMovies.includes(movie.id));
     window.scrollTo(0, 0);
-    }, [user, movie.id]);
+  }, [user, movie.id]);
 
   const addFavorite = () => {
       fetch(`https://movieflix2023.herokuapp.com/users/${user.Username}/movies/${MovieId}`, {
@@ -37,7 +38,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully added to favorites");
               setIsFavorite(true);
-              updateUser(user);
+              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
           }
       })
       .catch(e => {
@@ -62,7 +63,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully deleted from favorites");
               setIsFavorite(false);
-              updateUser(user);
+              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
           }
       })
       .catch(e => {
@@ -76,37 +77,36 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
         <img src={movie.image} style={{ width: "100%" }} />
       </div>
       <div>
-        <span>Movie Title: </span>
-        <span>{movie.title}</span>
+        <h2>{movie.title}</h2>
       </div>
       <br />
       <div>
-        <span>Description: </span>
+        <span style={{ fontWeight: 'bold' }}>Description: </span>
         <span>{movie.description}</span>
       </div>
       <br />
       <div>
-        <span>Genre: </span>
+        <span style={{ fontWeight: 'bold' }}>Genre: </span>
         <span>{movie.genre.Name}</span>
       </div>
       <br />
       <div>
-        <span>Genre Description: </span>
+        <span style={{ fontWeight: 'bold' }}>Genre Description: </span>
         <span>{movie.genre.Description}</span>
       </div>
       <br />
       <div>
-        <span>Director: </span>
+        <span style={{ fontWeight: 'bold' }}>Director: </span>
         <span>{movie.director.Name}</span>
       </div>
       <br />
       <div>
-        <span>Bio: </span>
+        <span style={{ fontWeight: 'bold' }}>Bio: </span>
         <span>{movie.director.Bio}</span>
       </div>
       <br />
       <div>
-        <span>Birth: </span>
+        <span style={{ fontWeight: 'bold' }}>Birth: </span>
         <span>{movie.director.Birth}</span>
       </div>
       <br />
