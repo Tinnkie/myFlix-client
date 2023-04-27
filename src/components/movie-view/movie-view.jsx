@@ -62,7 +62,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully deleted from favorites");
               setIsFavorite(false);
-              updateUser(user);
+              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
           }
       })
       .catch(e => {
