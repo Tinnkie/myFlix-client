@@ -42,4 +42,6 @@
 - Allows existing users to deregister
   <br>
 
+## <a href=https://myflix2023.netlify.app/ target="blank">View Deployed App</a>
+
 ## Check my code: <a href=https://github.com/Tinnkie target="_blank"> Tinnkie GitHub </a>
