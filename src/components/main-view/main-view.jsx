@@ -10,16 +10,16 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("User"));
+  const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null); // State
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchMovies, setSearchMovies] = useState([]);
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredMovies = (searchTerm) => {
+    setSearchMovies(movies.filter(m => m.title.toLowerCase().includes(searchTerm.toLowerCase())));
+  }
 
   //This loads data from API
   useEffect(() => {
@@ -38,13 +38,17 @@ export const MainView = () => {
             director: movie.Director
           };
         });
-  
+        console.log(storedUser)
         setMovies(moviesFromApi);
       })
       .catch((error) => {
         console.error("Error fetching movie data: ", error);
       });
   }, [token]);
+
+  useEffect(() => {
+    setSearchMovies(movies);
+  }, [movies])
  
   return (
     <>
@@ -53,7 +57,7 @@ export const MainView = () => {
           setUser(null);
           setToken(null);
           localStorage.clear();
-        }} />
+        }} filteredMovies={filteredMovies} />
         <Row className="justify-content-md-center">
           <Routes>
             <Route
@@ -139,11 +143,11 @@ export const MainView = () => {
                 <>
                   {!user ? (
                     <Navigate to="/login" replace />
-                  ) : movies.length === 0 ? (
+                  ) : searchMovies.length === 0 ? (
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {movies.map((movie) => (
+                      {searchMovies.map((movie) => (
                         <Col className="mb-4" key={movie.id} md={3}>
                           <MovieCard movie={movie} />
                         </Col>

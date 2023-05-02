@@ -2,11 +2,12 @@ import { Navbar, Container, Nav, Form, FormControl, Button } from "react-bootstr
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, filteredMovies }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
+    filteredMovies(e.target.value);
   };
 
   return (
@@ -38,7 +39,6 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
               value={searchQuery}
               onChange={handleSearch}
             />
-            <Button variant="primary" className="ms-2">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

@@ -38,7 +38,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully added to favorites");
               setIsFavorite(true);
-              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
+              updateUser(user);
           }
       })
       .catch(e => {
@@ -63,7 +63,7 @@ export const MovieView = ({ movies, user, updateUser, token }) => {
           if (user) {
               alert("Successfully deleted from favorites");
               setIsFavorite(false);
-              updateUser((prevUser) => ({ ...prevUser, FavoriteMovies: user.FavoriteMovies }));
+              updateUser(user);
           }
       })
       .catch(e => {
